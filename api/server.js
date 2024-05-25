@@ -4,7 +4,8 @@ const cors = require('cors');
 const app = express();
 const port = process.env.PORT || 3000;
 
-const uri = process.env.MONGODB_URI || "mongodb+srv://Nianu25:nainu25@wddproject.url8zlb.mongodb.net/";
+// MongoDB connection URI
+const uri = process.env.MONGODB_URI || "mongodb://localhost:27017";
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 app.use(cors());
