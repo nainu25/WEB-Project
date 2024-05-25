@@ -2,10 +2,9 @@ const express = require('express');
 const { MongoClient } = require('mongodb');
 const cors = require('cors');
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
-// MongoDB connection URI
-const uri = "mongodb+srv://Nianu25:nainu25@wddproject.url8zlb.mongodb.net/";
+const uri = process.env.MONGODB_URI || "mongodb+srv://Nianu25:nainu25@wddproject.url8zlb.mongodb.net/";
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 app.use(cors());
@@ -26,14 +25,12 @@ async function run() {
     const database = client.db('realEstate');
     const homes = database.collection('homes');
 
-    // Endpoint to get all homes
-    app.get('/homes', async (req, res) => {
+    app.get('/api/homes', async (req, res) => {
       const homeList = await homes.find({}).toArray();
       res.json(homeList);
     });
 
-    // Endpoint to add a new home
-    app.post('/homes', async (req, res) => {
+    app.post('/api/homes', async (req, res) => {
       const newHome = req.body;
       const result = await homes.insertOne(newHome);
       res.json(result);
