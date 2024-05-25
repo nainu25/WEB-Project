@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  fetch('/api/homes')
+  fetch('https://real-estate-api-beige.vercel.app/api/homes')
     .then(response => {
       if (!response.ok) {
         throw new Error('Network response was not ok');
